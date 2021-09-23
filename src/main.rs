@@ -1,3 +1,4 @@
+use colored::Colorize;
 use std::{env, process};
 
 mod ikill;
@@ -30,21 +31,22 @@ For more information try --help
 fn main() {
     smol::block_on(async {
         match env::args().nth(1) {
-            None => {
-                ikill::run().await;
-            }
+            None =>
+                if let Err(e) = ikill::run().await {
+                    eprintln!("{}: {}", "error".red().bold(), e);
+                },
             Some(arg) => {
                 match arg.as_str() {
                     "-h" | "--help" => println!("{}", USAGE),
                     "-V" | "--version" => {
                         println!("{} v{}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
-                    }
+                    },
                     _ => {
                         unknown_args(arg);
                         process::exit(1);
-                    }
+                    },
                 };
-            }
+            },
         }
     });
 }

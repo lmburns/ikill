@@ -1,20 +1,25 @@
 [package]
 name = "ikill"
-version = "1.3.0"
-authors = ["pjmp"]
+version = "1.4.0"
+authors = ["pjmp", "lmburns"]
 edition = "2018"
 keywords = ["cli", "process", "kill", "killall", "fkill"]
 categories = ["command-line-utilities"]
 readme = "README.md"
 license = "MIT"
-homepage = "https://github.com/pjmp/ikill"
-repository = "https://github.com/pjmp/ikill"
-description = "Interactively kill processes"
+homepage = "https://github.com/lmburns/ikill"
+repository = "https://github.com/lmburns/ikill"
+description = "Interactively kill processes [FORK]"
 
 [dependencies]
 heim = {version = "0.1.0-rc.1", default-features = false, features = ["process"]}
 smol = "1.2.5"
 skim = "0.9.4"
+shlex = "1.1.0"
+notify-rust = "4.5.3"
+colored = "2.0.0"
+tabular = "0.1.4"
+anyhow = "1.0.44" # TODO: use or delete
 
 [profile.release]
 opt-level = 3
